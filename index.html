@@ -16,38 +16,7 @@
 
   <div id="app"></div>
 
-  <script>
-// criar uma const (objeto) com propriedade e valor para mostrar as rotas das páginas
-
-const routes = { // a propriedade deve estar em "" pois não pode iniciar com /
-  "/": "/pages/home.html",
-  "/about": "/pages/about.html",
-  "/contact": "/pages/contact.html",
-  404: "/pages/404.html",
-}
-
-    function route(event) {
-      event = event || window.event
-      event.preventDefault() // evento para mudar o comportamento padrão (onclick tem comp padrão de mudar para outra página)
-      //Após mudar o comp padrão é necessário falar pra onde ir, se não no onclick ele permanece na mesma página.
-      window.history.pushState({}, "", event.target.href)
-
-      handle()
-    }
-
-    function handle(){
-      // const pathname = window.location.pathname - forma comum
-      const { pathname } = window.location // forma desestruturada. 
-      // pode ser usada para pegar diversos valores no window location
-      // Ex const { pathname, host, port, href } = window.location
-      const route = routes[pathname] || routes [404]
-      //função para ir buscar a rota (assincrona):
-      fetch(route)
-      .then(data => data.text())
-      .then(html => {document.querySelector('#app').innerHTML = html})
-      //função para voltar a pagina clicada anteriormente através da seta do browser
-      window.onpopstate = () => handle()
-    }
-  </script>
+  <script src="js/index.js" type="module"></script>
+  
 </body>
 </html>
